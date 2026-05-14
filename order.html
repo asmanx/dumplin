@@ -29,7 +29,8 @@
             background-color: #FFD460;
             display: flex;
             flex-direction: column;
-            height: 100dvh; /* Kunci tinggi layar */
+            height: 100dvh;
+            /* Kunci tinggi layar */
             position: relative;
             overflow: hidden;
         }
@@ -78,14 +79,16 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribusi konten merata secara vertikal */
+            justify-content: space-between;
+            /* Distribusi konten merata secara vertikal */
             gap: 10px;
         }
 
         /* Perubahan utama: Image Container dibatasi tingginya */
         .product-image-container {
             width: 100%;
-            height: 150px; /* Ditentukan tingginya agar space komponen bawah terselamatkan */
+            height: 150px;
+            /* Ditentukan tingginya agar space komponen bawah terselamatkan */
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -94,7 +97,8 @@
         .product-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Gambar tetap proporsional dan tidak gepeng */
+            object-fit: cover;
+            /* Gambar tetap proporsional dan tidak gepeng */
             display: block;
         }
 
@@ -223,7 +227,8 @@
         /* Notes / Textarea */
         .notes-textarea {
             width: 100%;
-            height: 60px; /* Dikecilkan sedikit tinggi kolom pesannya */
+            height: 60px;
+            /* Dikecilkan sedikit tinggi kolom pesannya */
             background-color: #F9F2C8;
             border: none;
             border-radius: 12px;
@@ -251,7 +256,8 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            width: 100%; /* Dibuat full width agar terlihat kokoh di bawah */
+            width: 100%;
+            text-decoration: none;
             margin-top: 5px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(224, 82, 6, 0.3);
@@ -265,7 +271,8 @@
 
         .btn-nav {
             background-color: #E05206;
-            height: 65px; /* Menyamakan 65px dengan tinggi nav di contact.html */
+            height: 65px;
+            /* Menyamakan 65px dengan tinggi nav di contact.html */
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
             display: flex;
@@ -292,8 +299,8 @@
 
     <div class="phone-container">
         <header class="app-header">
-            <button class="btn-back"><i class="fa-solid fa-chevron-left"></i></button>
-            <h1>Order</h1>
+            <a href="home.html" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a>
+            <h1>Pesan</h1>
         </header>
 
         <main>
@@ -313,7 +320,7 @@
 
                 <div class="product-info">
                     <h2>Pangsit Chili Oil</h2>
-                    <p>Pedasnya Nagih, Nikmat di Setiap Gigitan.</p>
+                    <p>Pedasnya Nagih dan Nikmat di Setiap Gigitan.</p>
                 </div>
 
                 <div class="variant-section">
@@ -321,12 +328,12 @@
 
                     <label class="variant-option">
                         <span class="variant-label">Original</span>
-                        <input type="radio" name="varian" value="original">
+                        <input type="radio" name="varian" value="original" checked>
                     </label>
 
                     <label class="variant-option">
                         <span class="variant-label">Pedas</span>
-                        <input type="radio" name="varian" value="pedas" checked>
+                        <input type="radio" name="varian" value="pedas">
                     </label>
 
                     <label class="variant-option">
@@ -337,9 +344,9 @@
 
                 <textarea class="notes-textarea" placeholder="Pesan (opsional)"></textarea>
 
-                <button class="btn-order-now">
-                    <i class="fa-solid fa-basket-shopping"></i> Order Now
-                </button>
+
+                <a class="btn-order-now" href="address.html">Next</a>
+
             </div>
         </main>
 
