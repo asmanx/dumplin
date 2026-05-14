@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #F4C84F;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .back {
+            position: absolute;
+            left: 25px;
+            font-size: 30px;
+            color: #ff6b4a;
+            cursor: pointer;
+        }
+
+        .title {
+            color: white;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        /* Content putih */
+        .content {
+            background: #ECECEC;
+            min-height: calc(100vh - 140px);
+
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+
+            padding: 30px;
+        }
+
+        /* Responsive HP */
+        @media (max-width: 480px) {
+
+            .header {
+                height: 120px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .back {
+                font-size: 24px;
+                left: 18px;
+            }
+
+            .content {
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="back">&#8249;</div>
+        <h1 class="title">Contact Us</h1>
+    </div>
+
+    <div class="content">
+
+    </div>
+
+</body>
+
+</html>

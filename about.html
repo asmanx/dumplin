@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F5CB58;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            height: 140px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        .back {
+            position: absolute;
+            left: 25px;
+            font-size: 30px;
+            color: #ff6b4a;
+            cursor: pointer;
+        }
+
+        .text-about {
+            color: white;
+            text-decoration: none;
+            font-size: 30px;
+        }
+
+        main {
+            background: #ECECEC;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .home-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-icon {
+            height: 66px;
+        }
+
+        .judul {
+            margin-bottom: 5px;
+        }
+
+        .kotak-nama {
+            background-color: #F3E9B5;
+            border: none;
+            border-radius: 15px;
+            height: 45px;
+            width: 325px;
+            padding: 12px 15px;
+        }
+
+        .kotak-alamat {
+            background-color: #F3E9B5;
+            border: none;
+            border-radius: 15px;
+            height: 175px;
+            width: 325px;
+            padding: 12px 15px;
+            resize: none;
+        }
+
+        .kotak-btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            background-color: #ff6b4a;
+            border: none;
+            border-radius: 15px;
+            height: 35px;
+            color: white;
+            font-size: 15px;
+            margin-bottom: 40px;
+            width: 150px;
+        }
+
+        .btn-nav {
+            background-color: #ff6b4a;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-icon {
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="about">
+            <div class="back">&#8249;</div>
+            <a class="text-about" href="">About</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="content">
+            <div class="home-menu">
+                <img class="home-icon" src="Img/Home-Icon.png" alt="">
+            </div>
+
+            <div>
+                <h4 class="judul">Nama</h4>
+                <input class="kotak-nama" type="text" placeholder="Nama kamu">
+            </div>
+
+            <div>
+                <h4 class="judul">Alamat</h4>
+                <textarea class="kotak-alamat" placeholder="Tulis alamatmu disini"></textarea>
+            </div>
+
+            <div class="kotak-btn">
+                <button>Pesan</button>
+            </div>
+
+            <div class="btn-nav">
+                <a class="navbar" href=""><img class="btn-icon" src="btn/btn-home.png" alt=""></a>
+                <a class="navbar" href=""><img class="btn-icon" src="btn/btn-order.png" alt=""></a>
+                <a class="navbar" href=""><img class="btn-icon" src="btn/btn-about.png" alt=""></a>
+                <a class="navbar" href=""><img class="btn-icon" src="btn/btn-contact.png" alt=""></a>
+            </div>
+        </div>
+
+        <footer>
+
+        </footer>
+</body>
+
+</html>
