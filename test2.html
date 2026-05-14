@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FFD460;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 15px 24px;
+            position: relative;
+        }
+
+        /* Mengikuti desain mockup Order: teks "Order" berwarna cokelat tua */
+        .app-header h1 {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: #4A1D1D; 
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #E05206;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            background-color: white;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 28px 24px;
+            flex-grow: 1;
+        }
+
+        /* --- SAKRAL: Pembungkus Gambar Biar Presisi di Tengah --- */
+        .section-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .foto-dumplin {
+            width: 100%;
+            max-width: 330px;
+            height: 220px;
+            border-radius: 20px; /* Radius 20px sesuai permintaan Anda */
+            object-fit: cover;    /* Memotong gambar dengan rapi tanpa gepeng */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- SINKRONISASI TATA LETAK NAVIGASI & FOOTER --- */
+        footer {
+            background-color: white;
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Mengunci navigasi di tengah layar monitor */
+        }
+
+        .btn-nav {
+            background-color: #E05206;
+            height: 65px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+            width: 100%;
+            max-width: 375px; /* Lebar standar penahan agar sama dengan halaman lain */
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 25px;
+            text-decoration: none;
+            transition: color 0.2s;
+            
+            /* Trik Flexbox membuat ikon lurus tegak di tengah kotak jingga */
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="app-header">
+            <button class="btn-back"><i class="fa-solid fa-chevron-left"></i></button>
+            <h1>Order</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="content">
+            <section class="section-image">
+                <img class="foto-dumplin" src="Img/foto-dumplin.png" alt="Foto Dumpling">
+            </section>
+
+            </div>
+    </main>
+
+    <footer>
+        <nav class="btn-nav">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+            <a href="order.html" class="nav-item active"><i class="fa-solid fa-bowl-food"></i></a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+            <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+        </nav>
+    </footer>
+
+</body>
+
+</html>

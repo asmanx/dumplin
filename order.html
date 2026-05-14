@@ -1,22 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order</title>
+    <title>Order - Pangsit Chili Oil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FFD460;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container simulasi layar HP mockup */
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: #FFD460;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header */
+        .app-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            position: relative;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #E05206;
+            cursor: pointer;
+            position: absolute;
+            left: 24px;
+        }
+
+        .app-header h1 {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+            color: #4A1D1D;
+        }
+
+        /* Main Content */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            background-color: white;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        /* Image Container */
+        .product-image-container {
+            width: 100%;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Price & Counter Row */
+        .price-counter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #F0F0F0;
+            padding-bottom: 14px;
+        }
+
+        .price {
+            color: #E05206;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            user-select: none;
+            /* Mencegah teks ter-blok saat diklik cepat */
+        }
+
+        .btn-count {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: opacity 0.1s ease;
+        }
+
+        .btn-count:active {
+            opacity: 0.7;
+        }
+
+        .btn-minus {
+            background-color: #FFE6DB;
+            color: #E05206;
+        }
+
+        .btn-plus {
+            background-color: #E05206;
+            color: white;
+        }
+
+        .count-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            min-width: 15px;
+            text-align: center;
+        }
+
+        /* Product Info */
+        .product-info h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #4A1D1D;
+            margin-bottom: 4px;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: #7A6363;
+        }
+
+        /* Variant Section */
+        .variant-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #4A1D1D;
+        }
+
+        .variant-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            cursor: pointer;
+            border-bottom: 1px dashed #F0F0F0;
+        }
+
+        .variant-option:last-of-type {
+            border-bottom: none;
+        }
+
+        .variant-label {
+            font-size: 14px;
+            color: #7A6363;
+            font-weight: 500;
+        }
+
+        /* Kustomisasi Radio Button */
+        .variant-option input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #E05206;
+            border-radius: 50%;
+            outline: none;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .variant-option input[type="radio"]:checked::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: #E05206;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Notes / Textarea */
+        .notes-textarea {
+            width: 100%;
+            height: 40px;
+            background-color: #F9F2C8;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 12px;
+            color: #634343;
+            resize: none;
+            outline: none;
+        }
+
+        .notes-textarea::placeholder {
+            color: #A08A8A;
+        }
+
+        /* Action Button */
+        .btn-order-now {
+            background-color: #E05206;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 80%;
+            margin: 10px auto 0 auto;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(224, 82, 6, 0.3);
+        }
+
+        /* Footer Navigation */
+        .btn-nav {
+            background-color: #E05206;
+            height: 70px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 22px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: #ffffff;
+        }
+
+        footer {
+            background-color: white;
+        }
+    </style>
 </head>
+
 <body>
-    <header>
 
-    </header>
+    <div class="phone-container">
+        <header class="app-header">
+            <button class="btn-back"><i class="fa-solid fa-chevron-left"></i></button>
+            <h1>Order</h1>
+        </header>
 
-    <main>
+        <main>
+            <div class="content">
+                <div class="product-image-container">
+                    <img class="product-image" src="Img/foto-dumplin.png" alt="Pangsit Chili Oil">
+                </div>
 
-    </main>
+                <div class="price-counter-row">
+                    <span class="price">Rp12.000</span>
+                    <div class="counter">
+                        <button class="btn-count btn-minus" id="btn-minus"><i class="fa-solid fa-minus"></i></button>
+                        <span class="count-value" id="count-value">1</span>
+                        <button class="btn-count btn-plus" id="btn-plus"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
 
-    <footer>
-        
-    </footer>
-    
+                <div class="product-info">
+                    <h2>Pangsit Chili Oil</h2>
+                    <p>Pedasnya Nagih, Nikmat di Setiap Gigitan.</p>
+                </div>
+
+                <div class="variant-section">
+                    <h3>Varian Rasa</h3>
+
+                    <label class="variant-option">
+                        <span class="variant-label">Original</span>
+                        <input type="radio" name="varian" value="original">
+                    </label>
+
+                    <label class="variant-option">
+                        <span class="variant-label">Pedas</span>
+                        <input type="radio" name="varian" value="pedas" checked>
+                    </label>
+
+                    <label class="variant-option">
+                        <span class="variant-label">Extra Pedas</span>
+                        <input type="radio" name="varian" value="extra-pedas">
+                    </label>
+                </div>
+
+                <textarea class="notes-textarea" placeholder="Pesan (opsional)"></textarea>
+
+                <button class="btn-order-now">
+                    <i class="fa-solid fa-basket-shopping"></i> Order Now
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <nav class="btn-nav">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+            <a href="order.html" class="nav-item active"><i class="fa-solid fa-bowl-food"></i></a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+            <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+        </nav>
+        </footer>
+    </div>
+
+    <script>
+        // Mengambil elemen HTML berdasarkan ID-nya
+        const btnMinus = document.getElementById('btn-minus');
+        const btnPlus = document.getElementById('btn-plus');
+        const countValue = document.getElementById('count-value');
+
+        // Nilai awal quantity produk
+        let currentCount = 1;
+
+        // Fungsi ketika tombol Tambah (+) diklik
+        btnPlus.addEventListener('click', () => {
+            currentCount++;
+            countValue.textContent = currentCount;
+        });
+
+        // Fungsi ketika tombol Kurang (-) diklik
+        btnMinus.addEventListener('click', () => {
+            // Batasi agar jumlah pemesanan minimal adalah 1
+            if (currentCount > 1) {
+                currentCount--;
+                countValue.textContent = currentCount;
+            }
+        });
+    </script>
 </body>
+
 </html>
