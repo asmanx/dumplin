@@ -34,7 +34,7 @@
             overflow: hidden;
         }
 
-        /* Header Alamat - Diperbaiki agar posisi absolute tombol kembali berfungsi sempurna */
+        /* Header Alamat */
         header {
             height: 70px;
             display: flex;
@@ -51,7 +51,6 @@
             color: #4A1D1D;
         }
 
-        /* Tombol kembali diposisikan presisi di kiri header */
         .btn-back {
             background: none;
             border: none;
@@ -215,15 +214,15 @@
 
                 <div class="group-input">
                     <h4 class="judul">Nama</h4>
-                    <input class="kotak-nama" type="text" placeholder="Masukkan nama kamu">
+                    <input class="kotak-nama" id="input-nama" type="text" placeholder="Masukkan nama kamu">
                 </div>
 
                 <div class="group-input">
                     <h4 class="judul">Alamat</h4>
-                    <textarea class="kotak-alamat" placeholder="Tulis alamat rumahmu di sini secara lengkap"></textarea>
+                    <textarea class="kotak-alamat" id="input-alamat" placeholder="Tulis alamat rumahmu di sini secara lengkap"></textarea>
                 </div>
 
-                <button class="btn-order-now">
+                <button class="btn-order-now" id="btn-submit-order">
                     <i class="fa-solid fa-basket-shopping"></i> Order Now
                 </button>
             </div>
@@ -240,6 +239,49 @@
 
     </div>
 
+    <script>
+        const btnSubmitOrder = document.getElementById('btn-submit-order');
+
+        btnSubmitOrder.addEventListener('click', () => {
+            const nama = document.getElementById('input-nama').value.trim();
+            const alamat = document.getElementById('input-alamat').value.trim();
+
+            // Cek apabila nama dan alamat kosong
+            if (!nama || !alamat) {
+                alert("Mohon isi Nama dan Alamat lengkap pengiriman terlebih dahulu!");
+                return;
+            }
+
+            // Menarik kembali data porsi dari halaman order.html
+            const jumlah = localStorage.getItem('order_jumlah') || 1;
+            const varian = localStorage.getItem('order_varian') || 'Original';
+            const pesan = localStorage.getItem('order_pesan') || '-';
+
+            // Format huruf awal varian menjadi kapital
+            const varianFormat = varian.charAt(0).toUpperCase() + varian.slice(1);
+
+            // GANTI nomor di bawah ini dengan nomor WA bisnis tokomu (gunakan kode negara tanpa '+')
+            const nomorWA = "081314640546"; 
+
+            // Menyusun format template teks pesan WhatsApp
+            const teksPesan = `Halo Dumplin! Saya mau order nih:%0A%0A` +
+                              `*Detail Pesanan:*%0A` +
+                              `• Menu: Pangsit Chili Oil%0A` +
+                              `• Jumlah: ${jumlah} Porsi%0A` +
+                              `• Varian: ${varianFormat}%0A` +
+                              `• Catatan: ${pesan}%0A%0A` +
+                              `*Data Pengiriman:*%0A` +
+                              `• Nama: ${nama}%0A` +
+                              `• Alamat: ${alamat}%0A%0A` +
+                              `Ditunggu konfirmasinya ya, terima kasih!`;
+
+            // Clear memori pesanan sehabis klik order agar bersih kembali
+            localStorage.clear();
+
+            // Alihkan otomatis membuka aplikasi WhatsApp
+            window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${teksPesan}`, '_blank');
+        });
+    </script>
 </body>
 
 </html>

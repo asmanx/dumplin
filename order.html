@@ -53,6 +53,7 @@
             cursor: pointer;
             position: absolute;
             left: 24px;
+            text-decoration: none;
         }
 
         .app-header h1 {
@@ -342,10 +343,9 @@
                     </label>
                 </div>
 
-                <textarea class="notes-textarea" placeholder="Pesan (opsional)"></textarea>
+                <textarea class="notes-textarea" id="notes-pesan" placeholder="Pesan (opsional)"></textarea>
 
-
-                <a class="btn-order-now" href="address.html">Next</a>
+                <button class="btn-order-now" id="btn-next">Next</button>
 
             </div>
         </main>
@@ -364,6 +364,7 @@
         const btnMinus = document.getElementById('btn-minus');
         const btnPlus = document.getElementById('btn-plus');
         const countValue = document.getElementById('count-value');
+        const btnNext = document.getElementById('btn-next');
 
         let currentCount = 1;
 
@@ -377,6 +378,20 @@
                 currentCount--;
                 countValue.textContent = currentCount;
             }
+        });
+
+        // Logika menyimpan data pilihan ke LocalStorage saat tombol Next diklik
+        btnNext.addEventListener('click', () => {
+            const jumlah = currentCount;
+            const varian = document.querySelector('input[name="varian"]:checked').value;
+            const pesanOpsional = document.getElementById('notes-pesan').value.trim() || "-";
+
+            localStorage.setItem('order_jumlah', jumlah);
+            localStorage.setItem('order_varian', varian);
+            localStorage.setItem('order_pesan', pesanOpsional);
+
+            // Alihkan halaman ke address.html
+            window.location.href = "address.html";
         });
     </script>
 </body>
