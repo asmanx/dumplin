@@ -22,7 +22,6 @@
             align-items: center;
         }
 
-        /* Container dikunci menggunakan height penuh agar sama persis seperti Contact */
         .phone-container {
             width: 100%;
             max-width: 412px;
@@ -81,15 +80,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            /* Distribusi konten merata secara vertikal */
             gap: 10px;
         }
 
-        /* Perubahan utama: Image Container dibatasi tingginya */
         .product-image-container {
             width: 100%;
             height: 150px;
-            /* Ditentukan tingginya agar space komponen bawah terselamatkan */
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -99,7 +95,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Gambar tetap proporsional dan tidak gepeng */
             display: block;
         }
 
@@ -229,7 +224,6 @@
         .notes-textarea {
             width: 100%;
             height: 60px;
-            /* Dikecilkan sedikit tinggi kolom pesannya */
             background-color: #F9F2C8;
             border: none;
             border-radius: 12px;
@@ -273,7 +267,6 @@
         .btn-nav {
             background-color: #E05206;
             height: 65px;
-            /* Menyamakan 65px dengan tinggi nav di contact.html */
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
             display: flex;
@@ -380,7 +373,6 @@
             }
         });
 
-        // Logika menyimpan data pilihan ke LocalStorage saat tombol Next diklik
         btnNext.addEventListener('click', () => {
             const jumlah = currentCount;
             const varian = document.querySelector('input[name="varian"]:checked').value;
@@ -390,7 +382,6 @@
             localStorage.setItem('order_varian', varian);
             localStorage.setItem('order_pesan', pesanOpsional);
 
-            // Alihkan halaman ke address.html
             window.location.href = "address.html";
         });
     </script>
