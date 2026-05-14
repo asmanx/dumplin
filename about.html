@@ -16,17 +16,32 @@
 
         body {
             display: flex;
-            flex-direction: column;
-            height: 100dvh;
+            justify-content: center;
+            align-items: center;
+            min-height: 100dvh;
             background-color: #FFD460;
         }
 
+        /* Container tetap pas satu layar HP */
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: #FFD460;
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header identik dengan Contact */
         .app-header {
             height: 70px;
             display: flex;
             align-items: center;
             padding: 15px 24px;
             position: relative;
+            flex-shrink: 0;
         }
 
         .app-header h1 {
@@ -45,33 +60,48 @@
             color: #E05206;
             cursor: pointer;
             font-weight: bold;
+            position: absolute;
+            left: 24px;
         }
 
         main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Jarak dikembalikan biasa (gap: 20px) seperti awalnya */
+        .content {
             background: white;
             border-top-left-radius: 35px;
             border-top-right-radius: 35px;
             padding: 30px;
             flex-grow: 1;
-        }
-
-        .content {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 20px; 
         }
 
         .logo-about {
             height: 100px;
+            object-fit: contain;
         }
 
+        /* Our Team Section */
         .our-team {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
+            width: 100%;
+        }
+
+        .our-team h4 {
+            color: #4A1D1D;
+            font-size: 16px;
+            font-weight: 700;
         }
 
         .group-profil {
@@ -79,22 +109,57 @@
             gap: 20px;
             justify-content: space-around;
             align-items: center;
+            width: 100%;
+        }
+
+        .profil-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .profil {
             height: 60px;
+            width: 60px;
             margin-bottom: 10px;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .nama {
             text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4A1D1D;
         }
 
+        /* Deskripsi rapi dengan warna penyesuaian Contact */
         .group-about {
-            background-color: #F3E9B5;
+            background-color: #F7EAA2;
             text-align: center;
             padding: 20px;
             border-radius: 15px;
+            color: #634343;
+            width: 100%;
+        }
+
+        .group-about h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #4A1D1D;
+        }
+
+        .group-about p {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Footer Navigasi */
+        footer {
+            background-color: white;
+            flex-shrink: 0;
         }
 
         .btn-nav {
@@ -120,68 +185,65 @@
         .nav-item:hover {
             color: #ffffff;
         }
-
-        footer {
-            background-color: white;
-        }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="app-header">
-            <button class="btn-back"> <i class="fa-solid fa-chevron-left"></i></button>
-            <h1>About</h1>
-        </div>
-    </header>
 
-    <main>
-        <div class="content">
-            <div>
-                <img class="logo-about" src="Img/logo-about.png" alt="">
+    <div class="phone-container">
+        <header>
+            <div class="app-header">
+                <button class="btn-back"><i class="fa-solid fa-chevron-left"></i></button>
+                <h1>About</h1>
             </div>
+        </header>
 
-            <div class="our-team">
-                <h4>Our Team</h4>
-                <div class="group-profil">
-                    <div>
-                        <img class="profil" src="team/Ellipse 6.png" alt="">
-                        <h5 class="nama">Rifa</h5>
-                    </div>
-                    <div>
-                        <img class="profil" src="team/Ellipse 6.png" alt="">
-                        <h5 class="nama">Asman</h5>
-                    </div>
-                    <div>
-                        <img class="profil" src="team/Ellipse 6.png" alt="">
-                        <h5 class="nama">Rafikhar</h5>
-                    </div>
-                    <div>
-                        <img class="profil" src="team/Ellipse 6.png" alt="">
-                        <h5 class="nama">Luthfi</h5>
-                    </div>
+        <main>
+            <div class="content">
+                <div>
+                    <img class="logo-about" src="Img/logo-about.png" alt="Logo">
+                </div>
 
+                <div class="our-team">
+                    <h4>Our Team</h4>
+                    <div class="group-profil">
+                        <div class="profil-card">
+                            <img class="profil" src="team/Ellipse 6.png" alt="Rifa">
+                            <h5 class="nama">Rifa</h5>
+                        </div>
+                        <div class="profil-card">
+                            <img class="profil" src="team/Ellipse 6.png" alt="Asman">
+                            <h5 class="nama">Asman</h5>
+                        </div>
+                        <div class="profil-card">
+                            <img class="profil" src="team/Ellipse 6.png" alt="Rafikhar">
+                            <h5 class="nama">Rafikhar</h5>
+                        </div>
+                        <div class="profil-card">
+                            <img class="profil" src="team/Ellipse 6.png" alt="Luthfi">
+                            <h5 class="nama">Luthfi</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group-about">
+                    <h4>About</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod fuga ad facere vel? Ut necessitatibus
+                        iure ducimus minima, consectetur est vitae atque, maiores quidem exercitationem quos omnis.
+                        Distinctio, possimus cum!</p>
                 </div>
             </div>
+        </main>
 
-            <div class="group-about">
-                <h4>About</h4>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod fuga ad facere vel? Ut necessitatibus
-                    iure ducimus minima, consectetur est vitae atque, maiores quidem exercitationem quos omnis.
-                    Distinctio, possimus cum!</p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <nav class="btn-nav">
-            <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
-            <a href="order.html" class="nav-item"><i class="fa-solid fa-bowl-food"></i></a>
-            <a href="about.html" class="nav-item active"><i class="fa-solid fa-clipboard-list"></i></a>
-            <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
-        </nav>
-    </footer>
-
+        <footer>
+            <nav class="btn-nav">
+                <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+                <a href="order.html" class="nav-item"><i class="fa-solid fa-bowl-food"></i></a>
+                <a href="about.html" class="nav-item active"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+            </nav>
+        </footer>
+    </div>
 
 </body>
 

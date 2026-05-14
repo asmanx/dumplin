@@ -16,21 +16,22 @@
 
         body {
             background-color: #FFD460;
-            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Container simulasi layar HP mockup */
+        /* Container dikunci menggunakan height penuh agar sama persis seperti Contact */
         .phone-container {
             width: 100%;
             max-width: 412px;
             background-color: #FFD460;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            height: 100dvh; /* Kunci tinggi layar */
             position: relative;
+            overflow: hidden;
         }
 
         /* Header */
@@ -40,6 +41,7 @@
             align-items: center;
             padding: 0 24px;
             position: relative;
+            flex-shrink: 0;
         }
 
         .btn-back {
@@ -55,8 +57,8 @@
         .app-header h1 {
             flex-grow: 1;
             text-align: center;
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 25px;
+            font-weight: bold;
             color: #4A1D1D;
         }
 
@@ -65,22 +67,25 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .content {
             background-color: white;
             border-top-left-radius: 35px;
             border-top-right-radius: 35px;
-            padding: 24px;
+            padding: 20px 24px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            justify-content: space-between; /* Distribusi konten merata secara vertikal */
+            gap: 10px;
         }
 
-        /* Image Container */
+        /* Perubahan utama: Image Container dibatasi tingginya */
         .product-image-container {
             width: 100%;
+            height: 150px; /* Ditentukan tingginya agar space komponen bawah terselamatkan */
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -88,7 +93,8 @@
 
         .product-image {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover; /* Gambar tetap proporsional dan tidak gepeng */
             display: block;
         }
 
@@ -98,12 +104,12 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #F0F0F0;
-            padding-bottom: 14px;
+            padding-bottom: 10px;
         }
 
         .price {
             color: #E05206;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
         }
 
@@ -112,12 +118,11 @@
             align-items: center;
             gap: 14px;
             user-select: none;
-            /* Mencegah teks ter-blok saat diklik cepat */
         }
 
         .btn-count {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             border: none;
             display: flex;
@@ -155,19 +160,20 @@
             font-size: 16px;
             font-weight: 700;
             color: #4A1D1D;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .product-info p {
-            font-size: 13px;
+            font-size: 12px;
             color: #7A6363;
         }
 
         /* Variant Section */
         .variant-section h3 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             color: #4A1D1D;
+            margin-bottom: 4px;
         }
 
         .variant-option {
@@ -184,7 +190,7 @@
         }
 
         .variant-label {
-            font-size: 14px;
+            font-size: 13px;
             color: #7A6363;
             font-weight: 500;
         }
@@ -217,11 +223,11 @@
         /* Notes / Textarea */
         .notes-textarea {
             width: 100%;
-            height: 40px;
+            height: 42px; /* Dikecilkan sedikit tinggi kolom pesannya */
             background-color: #F9F2C8;
             border: none;
             border-radius: 12px;
-            padding: 12px;
+            padding: 10px 12px;
             font-size: 12px;
             color: #634343;
             resize: none;
@@ -245,18 +251,23 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            width: 80%;
-            margin: 10px auto 0 auto;
+            width: 100%; /* Dibuat full width agar terlihat kokoh di bawah */
+            margin-top: 5px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(224, 82, 6, 0.3);
         }
 
         /* Footer Navigation */
+        footer {
+            background-color: white;
+            flex-shrink: 0;
+        }
+
         .btn-nav {
             background-color: #E05206;
-            height: 70px;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
+            height: 65px; /* Menyamakan 65px dengan tinggi nav di contact.html */
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -265,7 +276,7 @@
 
         .nav-item {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 22px;
+            font-size: 25px;
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -273,10 +284,6 @@
         .nav-item.active,
         .nav-item:hover {
             color: #ffffff;
-        }
-
-        footer {
-            background-color: white;
         }
     </style>
 </head>
@@ -338,32 +345,27 @@
 
         <footer>
             <nav class="btn-nav">
-            <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
-            <a href="order.html" class="nav-item active"><i class="fa-solid fa-bowl-food"></i></a>
-            <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
-            <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
-        </nav>
+                <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+                <a href="order.html" class="nav-item active"><i class="fa-solid fa-bowl-food"></i></a>
+                <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+            </nav>
         </footer>
     </div>
 
     <script>
-        // Mengambil elemen HTML berdasarkan ID-nya
         const btnMinus = document.getElementById('btn-minus');
         const btnPlus = document.getElementById('btn-plus');
         const countValue = document.getElementById('count-value');
 
-        // Nilai awal quantity produk
         let currentCount = 1;
 
-        // Fungsi ketika tombol Tambah (+) diklik
         btnPlus.addEventListener('click', () => {
             currentCount++;
             countValue.textContent = currentCount;
         });
 
-        // Fungsi ketika tombol Kurang (-) diklik
         btnMinus.addEventListener('click', () => {
-            // Batasi agar jumlah pemesanan minimal adalah 1
             if (currentCount > 1) {
                 currentCount--;
                 countValue.textContent = currentCount;
