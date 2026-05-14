@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Dumplin App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FFD460;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container simulasi layar HP mockup */
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: #FFD460;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header Beranda */
+        .home-header {
+            padding: 30px 24px 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-greet h1 {
+            font-size: 20px;
+            color: #4A1D1D;
+            font-weight: 700;
+        }
+
+        .user-greet p {
+            font-size: 13px;
+            color: #634343;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4A1D1D;
+            font-size: 16px;
+        }
+
+        /* Main Content Container */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            background-color: white;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-bottom: 100px; /* Jarak agar tidak tertutup nav bawah */
+        }
+
+        /* --- PEMBARUAN: Banner Utama Vertikal & Besar --- */
+        .hero-banner {
+            background-color: #FFF9E6;
+            border-radius: 25px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column; /* Mengubah susunan tata letak menjadi vertikal */
+            gap: 14px;
+            border: 2px solid #FFD460;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(224, 82, 6, 0.05);
+        }
+
+        .hero-img-box {
+            width: 100%; /* Lebar penuh mengikuti container card */
+            height: 180px; /* Ukuran tinggi foto dinaikkan agar lebih puas dilihat */
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .hero-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .tag-best {
+            background-color: #E05206;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-text h2 {
+            font-size: 19px; /* Teks judul diperbesar */
+            color: #4A1D1D;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .hero-text p {
+            font-size: 12px;
+            color: #7A6363;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .hero-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed #FFD460;
+            padding-top: 12px;
+        }
+
+        .hero-price {
+            font-size: 18px; /* Teks harga diperjelas */
+            font-weight: 800;
+            color: #E05206;
+        }
+
+        /* Desain tombol aksi kecil di pojok kanan card */
+        .btn-go-action {
+            background-color: #E05206;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #4A1D1D;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Iklan Varian Rasa (Horizontal Cards) */
+        .variant-scroller {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+
+        .variant-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .variant-card {
+            min-width: 135px;
+            width: 135px;
+            border-radius: 20px;
+            padding: 14px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .var-ori { background-color: #EBF8EE; border: 1px solid #BCE5C7; }
+        .var-pedas { background-color: #FFF2EC; border: 1px solid #FFD3BD; }
+        .var-extrapedas { background-color: #FCEAEA; border: 1px solid #F7C3C3; }
+
+        .variant-card i { font-size: 22px; }
+        .var-ori i { color: #2E7D32; }
+        .var-pedas i { color: #E05206; }
+        .var-extrapedas i { color: #C62828; }
+
+        .variant-card h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4A1D1D;
+        }
+
+        .variant-card p {
+            font-size: 10px;
+            color: #7A6363;
+            line-height: 1.2;
+        }
+
+        /* Banner Promo / Keunggulan */
+        .info-banner {
+            background: linear-gradient(135deg, #E05206 0%, #FF7A30 100%);
+            border-radius: 20px;
+            padding: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .info-banner i {
+            font-size: 32px;
+            color: #FFD460;
+        }
+
+        .info-banner-text h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .info-banner-text p {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        /* Testimoni / Review Pelanggan */
+        .review-box {
+            background-color: #F9F9F9;
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reviewer-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4A1D1D;
+        }
+
+        .stars {
+            color: #FFD460;
+            font-size: 10px;
+        }
+
+        .review-text {
+            font-size: 11px;
+            color: #634343;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        /* Footer Navigation */
+        .footer-nav-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .btn-nav {
+            background-color: #E05206;
+            height: 70px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 22px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="phone-container">
+        <header class="home-header">
+            <div class="user-greet">
+                <p>Selamat Datang di Dumplin App!</p>
+                <h1>Menu Spesial Hari Ini</h1>
+            </div>
+            <div class="header-icons">
+                <div class="icon-box"><i class="fa-solid fa-fire"></i></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="content">
+                
+                <a href="order.html" class="hero-banner">
+                    <div class="hero-img-box">
+                        <img src="Img/foto-dumplin.png" alt="Pangsit Chili Oil">
+                    </div>
+                    <div class="hero-text">
+                        <!-- <span class="tag-best">Best Seller</span> -->
+                        <h2>Pangsit Chili Oil</h2>
+                        <p>Nikmati kelezatan premium pangsit lembut berpadu sempurna dengan siraman minyak cabai (chili oil) murni yang super gurih dan mantap!</p>
+                        
+                        <div class="hero-price-row">
+                            <span class="hero-price">Rp12.000</span>
+                            <div class="btn-go-action">
+                                Order Now <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <div>
+                    <h3 class="section-title"><i class="fa-solid fa-pepper-hot" style="color: #E05206;"></i> Jelajahi Varian Rasa</h3>
+                    <div class="variant-scroller">
+                        
+                        <div class="variant-card var-ori">
+                            <i class="fa-solid fa-seedling"></i>
+                            <h4>Original</h4>
+                            <p>Gurih alami, cocok untuk yang tidak suka pedas.</p>
+                        </div>
+
+                        <div class="variant-card var-pedas">
+                            <i class="fa-solid fa-fire"></i>
+                            <h4>Pedas</h4>
+                            <p>Level pas. Pedasnya nagih di setiap gigitan.</p>
+                        </div>
+
+                        <div class="variant-card var-extrapedas">
+                            <i class="fa-solid fa-fire-burner"></i>
+                            <h4>Extra Pedas</h4>
+                            <p>Super hot! Khusus untuk pecinta tantangan cabai.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="info-banner">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div class="info-banner-text">
+                        <h3>100% Bahan Segar & Premium</h3>
+                        <p>Dibuat langsung setiap hari tanpa bahan pengawet.</p>
+                    </div>
+                </div>
+
+                <!-- <div>
+                    <h3 class="section-title"><i class="fa-solid fa-comment-dots" style="color: #FFD460;"></i> Apa Kata Mereka?</h3>
+                    <div class="review-box">
+                        <div class="review-header">
+                            <span class="reviewer-name">Andi Wijaya</span>
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">"Chili oil-nya juara banget! Pangsitnya padat dan gurih. Fix bakal langganan terus di sini."</p>
+                    </div>
+                </div> -->
+
+            </div>
+        </main>
+
+        <div class="footer-nav-container">
+            <nav class="btn-nav">
+            <a href="home.html" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+            <a href="order.html" class="nav-item"><i class="fa-solid fa-bowl-food"></i></a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+            <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+        </nav>
+        </div>
+    </div>
+
+</body>
+</html>
