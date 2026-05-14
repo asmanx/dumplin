@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Dumplin App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================================================
+           TAMPILAN ASLI HP (TIDAK DIUBAH SAMA SEKALI)
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FFD460;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: #FFD460;
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header Beranda */
+        .home-header {
+            padding: 20px 24px 15px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .user-greet h1 {
+            font-size: 20px;
+            color: #4A1D1D;
+            font-weight: 700;
+        }
+
+        .user-greet p {
+            font-size: 13px;
+            color: #634343;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4A1D1D;
+            font-size: 16px;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .content {
+            background-color: white;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 24px 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hero-banner {
+            background-color: #FFF9E6;
+            border-radius: 25px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 2px solid #FFD460;
+            box-shadow: 0 6px 15px rgba(224, 82, 6, 0.05);
+            flex-shrink: 0;
+        }
+
+        .hero-img-box {
+            width: 100%;
+            height: 156px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .hero-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .hero-text h2 {
+            font-size: 17px;
+            color: #4A1D1D;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .hero-text p {
+            font-size: 13px;
+            color: #7A6363;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .hero-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed #FFD460;
+            padding-top: 8px;
+        }
+
+        .hero-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: #E05206;
+        }
+
+        .btn-go-action {
+            background-color: #E05206;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-go-action:hover {
+            background-color: #ff6214;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #4A1D1D;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .variant-scroller {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+
+        .variant-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .variant-card {
+            min-width: 125px;
+            width: 125px;
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .var-ori { background-color: #EBF8EE; border: 1px solid #BCE5C7; }
+        .var-pedas { background-color: #FFF2EC; border: 1px solid #FFD3BD; }
+        .var-extrapedas { background-color: #FCEAEA; border: 1px solid #F7C3C3; }
+
+        .variant-card i { font-size: 20px; }
+        .var-ori i { color: #2E7D32; }
+        .var-pedas i { color: #E05206; }
+        .var-extrapedas i { color: #C62828; }
+
+        .variant-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #4A1D1D;
+        }
+
+        .variant-card p {
+            font-size: 10px;
+            color: #7A6363;
+            line-height: 1.2;
+        }
+
+        /* Banner Promo */
+        .info-banner {
+            background: linear-gradient(135deg, #E05206 0%, #FF7A30 100%);
+            border-radius: 20px;
+            padding: 14px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .info-banner i {
+            font-size: 28px;
+            color: #FFD460;
+        }
+
+        .info-banner-text h3 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .info-banner-text p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        footer {
+            background-color: white;
+            flex-shrink: 0;
+        }
+
+        .btn-nav {
+            background-color: #E05206;
+            height: 65px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 25px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+           KHUSUS TAMPILAN LAPTOP (Screen > 768px)
+           ========================================================================== */
+        @media (min-width: 768px) {
+            .phone-container {
+                max-width: 900px;
+                height: auto;
+                min-height: 85vh;
+                border-radius: 30px;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+                margin: 20px;
+            }
+
+            .home-header {
+                padding: 30px 40px 20px 40px;
+            }
+
+            .user-greet h1 {
+                font-size: 26px;
+            }
+
+            .user-greet p {
+                font-size: 15px;
+            }
+
+            .content {
+                padding: 40px 40px;
+                gap: 30px;
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+            }
+
+            /* Merubah Banner Utama jadi Kiri-Kanan di Laptop */
+            .hero-banner {
+                flex-direction: row;
+                align-items: center;
+                padding: 24px;
+                gap: 24px;
+            }
+
+            .hero-img-box {
+                width: 45%;
+                height: 220px;
+            }
+
+            .hero-text {
+                width: 55%;
+                justify-content: center;
+            }
+
+            .hero-text h2 {
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+
+            .hero-text p {
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+
+            .hero-price-row {
+                padding-top: 15px;
+            }
+
+            .hero-price {
+                font-size: 22px;
+            }
+
+            .btn-go-action {
+                padding: 10px 20px;
+                font-size: 14px;
+                border-radius: 20px;
+            }
+
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            /* Variant card menyebar rata tanpa scroll di laptop */
+            .variant-scroller {
+                overflow-x: visible;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
+            .variant-card {
+                flex: 1;
+                max-width: none;
+                padding: 20px;
+                gap: 10px;
+            }
+
+            .variant-card i {
+                font-size: 26px;
+            }
+
+            .variant-card h4 {
+                font-size: 18px;
+            }
+
+            .variant-card p {
+                font-size: 12px;
+            }
+
+            /* Info promo bawah */
+            .info-banner {
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .info-banner i {
+                font-size: 36px;
+            }
+
+            .info-banner-text h3 {
+                font-size: 16px;
+            }
+
+            .info-banner-text p {
+                font-size: 14px;
+            }
+
+            .btn-nav {
+                height: 75px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="phone-container">
+        <header class="home-header">
+            <div class="user-greet">
+                <p>Selamat Datang di Dumplin App!</p>
+                <h1>Menu Spesial Hari Ini</h1>
+            </div>
+            <div class="header-icons">
+                <div class="icon-box"><i class="fa-solid fa-fire"></i></div>
+            </div>
+        </header>
+
+        <main>
+            <div class="content">
+                
+                <div class="hero-banner">
+                    <div class="hero-img-box">
+                        <img src="Img/foto-dumplin.png" alt="Pangsit Chili Oil">
+                    </div>
+                    <div class="hero-text">
+                        <h2>Pangsit Chili Oil</h2>
+                        <p>Nikmati kelezatan pangsit lembut berpadu dengan cabai yang super gurih!</p>
+                        
+                        <div class="hero-price-row">
+                            <span class="hero-price">Rp12.000</span>
+                            <a href="order.html" class="btn-go-action">
+                                Order Now <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="section-title"><i class="fa-solid fa-pepper-hot" style="color: #E05206;"></i> Jelajahi Varian Rasa</h3>
+                    <div class="variant-scroller">
+                        
+                        <div class="variant-card var-ori">
+                            <i class="fa-solid fa-seedling"></i>
+                            <h4>Original</h4>
+                            <p>Gurih alami, cocok untuk yang tidak suka pedas.</p>
+                        </div>
+
+                        <div class="variant-card var-pedas">
+                            <i class="fa-solid fa-fire"></i>
+                            <h4>Pedas</h4>
+                            <p>Level pas. Pedasnya nagih di setiap gigitan.</p>
+                        </div>
+
+                        <div class="variant-card var-extrapedas">
+                            <i class="fa-solid fa-fire-burner"></i>
+                            <h4>Extra Pedas</h4>
+                            <p>Super hot! Khusus untuk pecinta tantangan.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="info-banner">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div class="info-banner-text">
+                        <h3>100% Bahan Segar</h3>
+                        <p>Dibuat langsung dengan bahan pilihan.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer>
+            <nav class="btn-nav">
+                <a href="home.html" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+                <a href="order.html" class="nav-item"><i class="fa-solid fa-bowl-food"></i></a>
+                <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+            </nav>
+        </footer>
+    </div>
+
+</body>
+</html>

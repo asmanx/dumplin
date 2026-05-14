@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address - Dumplin App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ==========================================================================
+           TAMPILAN ASLI HP (TIDAK DIUBAH)
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FFD460;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: #FFD460;
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        header h1 {
+            font-size: 25px;
+            font-weight: 700;
+            color: #4A1D1D;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #ff6214;
+            cursor: pointer;
+            position: absolute;
+            left: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        main {
+            background: #F8F9FA;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        main::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .home-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .home-icon {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .group-input {
+            width: 100%;
+        }
+
+        .judul {
+            font-size: 15px;
+            font-weight: 700;
+            color: #4A1D1D;
+            margin-bottom: 8px;
+        }
+
+        .kotak-nama,
+        .kotak-alamat {
+            background-color: #FFF9E6;
+            border: 2px solid #FFD460;
+            border-radius: 18px;
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 14px;
+            color: #4A1D1D;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .kotak-nama:focus,
+        .kotak-alamat:focus {
+            border-color: #E05206;
+        }
+
+        .kotak-alamat {
+            height: 140px;
+            resize: none;
+            line-height: 1.5;
+        }
+
+        .btn-order-now {
+            background-color: #E05206;
+            border: none;
+            border-radius: 18px;
+            height: 48px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(224, 82, 6, 0.2);
+            transition: background-color 0.2s;
+        }
+
+        .btn-order-now:hover {
+            background-color: #ff6214;
+        }
+
+        .btn-nav {
+            background-color: #E05206;
+            height: 65px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 25px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: #ffffff;
+        }
+
+        footer {
+            background-color: #F8F9FA;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           KHUSUS TAMPILAN LAPTOP (Screen > 768px)
+           ========================================================================== */
+        @media (min-width: 768px) {
+            .phone-container {
+                max-width: 800px; /* Lebih lebar di laptop tapi tidak full screen agar tetap rapi */
+                height: auto;
+                min-height: 80vh;
+                border-radius: 30px;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+                margin: 20px;
+            }
+
+            main {
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+                padding: 40px 80px;
+            }
+
+            .home-icon {
+                height: 100px;
+            }
+
+            .content {
+                gap: 25px;
+            }
+
+            .kotak-nama, .kotak-alamat {
+                font-size: 16px;
+                padding: 18px 20px;
+            }
+
+            .btn-order-now {
+                height: 55px;
+                font-size: 17px;
+                max-width: 300px;
+                margin: 20px auto; /* Tombol berada di tengah di layar lebar */
+            }
+
+            .btn-nav {
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="phone-container">
+
+        <header>
+            <a href="order.html" class="btn-back">
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+            <h1>Alamat</h1>
+        </header>
+
+        <main>
+            <div class="content">
+                <div class="home-menu">
+                    <img class="home-icon" src="Img/Home-Icon.png" alt="📍">
+                </div>
+
+                <div class="group-input">
+                    <h4 class="judul">Nama</h4>
+                    <input class="kotak-nama" id="input-nama" type="text" placeholder="Masukkan nama kamu">
+                </div>
+
+                <div class="group-input">
+                    <h4 class="judul">Alamat</h4>
+                    <textarea class="kotak-alamat" id="input-alamat" placeholder="Tulis alamat rumahmu di sini secara lengkap"></textarea>
+                </div>
+
+                <button class="btn-order-now" id="btn-submit-order">
+                    <i class="fa-solid fa-basket-shopping"></i> Order Via Wa
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <nav class="btn-nav">
+                <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+                <a href="order.html" class="nav-item active"><i class="fa-solid fa-bowl-food"></i></a>
+                <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+            </nav>
+        </footer>
+
+    </div>
+
+    <script>
+        const btnSubmitOrder = document.getElementById('btn-submit-order');
+
+        btnSubmitOrder.addEventListener('click', () => {
+            const nama = document.getElementById('input-nama').value.trim();
+            const alamat = document.getElementById('input-alamat').value.trim();
+
+            if (!nama || !alamat) {
+                alert("Mohon isi Nama dan Alamat lengkap pengiriman terlebih dahulu!");
+                return;
+            }
+
+            const jumlah = localStorage.getItem('order_jumlah') || 1;
+            const varian = localStorage.getItem('order_varian') || 'Original';
+            const pesan = localStorage.getItem('order_pesan') || '-';
+
+            const varianFormat = varian.charAt(0).toUpperCase() + varian.slice(1);
+
+            const nomorWA = "62895623014023"; 
+
+            const teksPesan = `Halo Dumplin! Saya mau order nih:%0A%0A` +
+                              `*Detail Pesanan:*%0A` +
+                              `• Menu: Pangsit Chili Oil%0A` +
+                              `• Jumlah: ${jumlah} Porsi%0A` +
+                              `• Varian: ${varianFormat}%0A` +
+                              `• Catatan: ${pesan}%0A%0A` +
+                              `*Data Pengiriman:*%0A` +
+                              `• Nama: ${nama}%0A` +
+                              `• Alamat: ${alamat}%0A%0A` +
+                              `Ditunggu konfirmasinya ya, terima kasih!`;
+
+            localStorage.clear();
+
+            window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${teksPesan}`, '_blank');
+        });
+    </script>
+</body>
+
+</html>

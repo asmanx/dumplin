@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>About</title>
+    <style>
+        /* ==========================================================================
+           TAMPILAN ASLI HP (TIDAK DIUBAH SAMA SEKALI)
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100dvh;
+            background-color: #FFD460;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: #FFD460;
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 15px 24px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .app-header h1 {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: #4A1D1D;
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #E05206;
+            cursor: pointer;
+            font-weight: bold;
+            position: absolute;
+            left: 24px;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .content {
+            background: white;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-about {
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .our-team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .our-team h4 {
+            color: #4A1D1D;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .group-profil {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
+        .profil-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profil {
+            height: 60px;
+            width: 60px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .nama {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4A1D1D;
+            margin-bottom: 10px;
+        }
+
+        .group-about {
+            background-color: #F7EAA2;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            color: #634343;
+            width: 100%;
+        }
+
+        .group-about h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #4A1D1D;
+        }
+
+        .group-about p {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        footer {
+            background-color: white;
+            flex-shrink: 0;
+        }
+
+        .btn-nav {
+            background-color: #E05206;
+            height: 65px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 25px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+           KHUSUS TAMPILAN LAPTOP / DESKTOP (Lebar layar mulai dari 768px ke atas)
+           ========================================================================== */
+        @media (min-width: 768px) {
+            body {
+                align-items: flex-start; /* Supaya container tidak memaksa nempel ke tengah vertikal jika konten panjang */
+                overflow-y: auto;
+            }
+
+            .phone-container {
+                max-width: 1024px; /* Melebar seukuran layar laptop standar */
+                height: auto;
+                min-height: 90vh;
+                overflow: visible;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+                margin: 20px;
+            }
+
+            main {
+                overflow: visible;
+            }
+
+            .content {
+                padding: 40px 60px;
+                gap: 35px;
+            }
+
+            .logo-about {
+                height: 150px; /* Logo sedikit lebih besar di laptop */
+            }
+
+            .our-team h4 {
+                font-size: 24px;
+            }
+
+            .group-profil {
+                justify-content: center;
+                gap: 50px; /* Jarak antar foto tim lebih renggang dan rapi di laptop */
+            }
+
+            .profil {
+                height: 90px;  /* Ukuran foto tim lebih besar di laptop */
+                width: 90px;
+            }
+
+            .nama {
+                font-size: 15px;
+            }
+
+            .group-about {
+                max-width: 800px; /* Membatasi teks About agar tidak terlalu mulur panjang ke samping */
+                padding: 30px;
+                border-radius: 25px;
+            }
+
+            .group-about h4 {
+                font-size: 24px;
+            }
+
+            .group-about p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            /* Navigasi bawah menyesuaikan space laptop */
+            .btn-nav {
+                height: 75px;
+                border-radius: 30px;
+            }
+
+            footer {
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="phone-container">
+        <header>
+            <div class="app-header">
+                <a href="home.html" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a>
+                <h1>About</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="content">
+                <div>
+                    <img class="logo-about" src="Img/logo-about.png" alt="Logo">
+                </div>
+
+                <div class="our-team">
+                    <h4>Our Team</h4>
+                    <div class="group-profil">
+                        <div class="profil-card">
+                            <img class="profil" src="team/rifa.png" alt="Rifa">
+                            <h5 class="nama">Rifa</h5>
+                        </div>
+                        <div class="profil-card">
+                            <img class="profil" src="team/asman.png" alt="Asman">
+                            <h5 class="nama">Asman</h5>
+                        </div>
+                        <div class="profil-card">
+                            <img class="profil" src="team/rafikhar.png" alt="Rafikhar">
+                            <h5 class="nama">Rafikhar</h5>
+                        </div>
+                        <div class="profil-card">
+                            <img class="profil" src="team/luthfi.png" alt="Luthfi">
+                            <h5 class="nama">Luthfi</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group-about">
+                    <h4>About</h4>
+                    <p>Nyari pangsit yang beneran lembut dan chili oil-nya nendang? Di sini tempatnya! Dumplin App siap
+                        anterin kelezatan pangsit yang gurih, pedas otentik, dan fresh langsung ke tempatmu. Gak
+                        perlu ribet, tinggal klik dan rasakan bedanya!</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <nav class="btn-nav">
+                <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+                <a href="order.html" class="nav-item"><i class="fa-solid fa-bowl-food"></i></a>
+                <a href="about.html" class="nav-item active"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+            </nav>
+        </footer>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Pangsit Chili Oil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FFD460;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            background-color: #FFD460;
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            position: relative;
+            overflow: hidden;
+            /* Transisi halus saat resize */
+            transition: all 0.3s ease;
+        }
+
+        /* ==========================================================================
+           MODIFIKASI UNTUK TAMPILAN LAPTOP
+           ========================================================================== */
+        @media (min-width: 768px) {
+            body {
+                /* Background luar container saat di laptop agar lebih estetik */
+                background: linear-gradient(135deg, #FFD460 0%, #E05206 100%);
+            }
+
+            .phone-container {
+                /* Membuat container tampak seperti frame HP di laptop */
+                height: 90vh; 
+                max-height: 850px;
+                border-radius: 35px;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+                border: 8px solid #222; /* Bezel tipis seperti HP */
+            }
+        }
+
+        /* Header */
+        .app-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #E05206;
+            cursor: pointer;
+            position: absolute;
+            left: 24px;
+            text-decoration: none;
+        }
+
+        .app-header h1 {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: #4A1D1D;
+        }
+
+        /* Main Content */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .content {
+            background-color: white;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 20px 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            overflow-y: auto; /* Memungkinkan scroll di dalam konten jika layar pendek */
+        }
+
+        /* Styling scrollbar untuk konten internal agar tetap rapi */
+        .content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .content::-webkit-scrollbar-thumb {
+            background: #FFD460;
+            border-radius: 10px;
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 150px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Price & Counter Row */
+        .price-counter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #F0F0F0;
+            padding-bottom: 10px;
+        }
+
+        .price {
+            color: #E05206;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            user-select: none;
+        }
+
+        .btn-count {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: opacity 0.1s ease;
+        }
+
+        .btn-minus { background-color: #FFE6DB; color: #E05206; }
+        .btn-plus { background-color: #E05206; color: white; }
+
+        .count-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            min-width: 15px;
+            text-align: center;
+        }
+
+        /* Product Info */
+        .product-info h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #4A1D1D;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: #7A6363;
+        }
+
+        /* Variant Section */
+        .variant-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #4A1D1D;
+            margin-bottom: 4px;
+        }
+
+        .variant-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            cursor: pointer;
+            border-bottom: 1px dashed #F0F0F0;
+        }
+
+        .variant-label {
+            font-size: 13px;
+            color: #7A6363;
+            font-weight: 500;
+        }
+
+        .variant-option input[type="radio"] {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #E05206;
+            border-radius: 50%;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .variant-option input[type="radio"]:checked::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: #E05206;
+            border-radius: 50%;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            height: 60px;
+            background-color: #F9F2C8;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 14px;
+            color: #634343;
+            resize: none;
+            outline: none;
+        }
+
+        .btn-order-now {
+            background-color: #E05206;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(224, 82, 6, 0.3);
+        }
+
+        /* Footer Navigation */
+        footer {
+            background-color: white;
+            flex-shrink: 0;
+        }
+
+        .btn-nav {
+            background-color: #E05206;
+            height: 65px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 25px;
+            text-decoration: none;
+        }
+
+        .nav-item.active { color: #ffffff; }
+    </style>
+</head>
+
+<body>
+
+    <div class="phone-container">
+        <header class="app-header">
+            <a href="home.html" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a>
+            <h1>Order</h1>
+        </header>
+
+        <main>
+            <div class="content">
+                <div class="product-image-container">
+                    <img class="product-image" src="Img/foto-dumplin.png" alt="Pangsit Chili Oil">
+                </div>
+
+                <div class="price-counter-row">
+                    <span class="price">Rp12.000</span>
+                    <div class="counter">
+                        <button class="btn-count btn-minus" id="btn-minus"><i class="fa-solid fa-minus"></i></button>
+                        <span class="count-value" id="count-value">1</span>
+                        <button class="btn-count btn-plus" id="btn-plus"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h2>Pangsit Chili Oil</h2>
+                    <p>Pedasnya Nagih dan Nikmat di Setiap Gigitan.</p>
+                </div>
+
+                <div class="variant-section">
+                    <h3>Varian Rasa</h3>
+                    <label class="variant-option">
+                        <span class="variant-label">Original</span>
+                        <input type="radio" name="varian" value="original" checked>
+                    </label>
+                    <label class="variant-option">
+                        <span class="variant-label">Pedas</span>
+                        <input type="radio" name="varian" value="pedas">
+                    </label>
+                    <label class="variant-option">
+                        <span class="variant-label">Extra Pedas</span>
+                        <input type="radio" name="varian" value="extra-pedas">
+                    </label>
+                </div>
+
+                <textarea class="notes-textarea" id="notes-pesan" placeholder="Catatan (opsional)"></textarea>
+
+                <button class="btn-order-now" id="btn-next">Next</button>
+            </div>
+        </main>
+
+        <footer>
+            <nav class="btn-nav">
+                <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+                <a href="order.html" class="nav-item active"><i class="fa-solid fa-bowl-food"></i></a>
+                <a href="about.html" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="contact.html" class="nav-item"><i class="fa-solid fa-headset"></i></a>
+            </nav>
+        </footer>
+    </div>
+
+    <script>
+        // Script logic tetap sama agar fungsi tidak berubah
+        const btnMinus = document.getElementById('btn-minus');
+        const btnPlus = document.getElementById('btn-plus');
+        const countValue = document.getElementById('count-value');
+        const btnNext = document.getElementById('btn-next');
+
+        let currentCount = 1;
+
+        btnPlus.addEventListener('click', () => {
+            currentCount++;
+            countValue.textContent = currentCount;
+        });
+
+        btnMinus.addEventListener('click', () => {
+            if (currentCount > 1) {
+                currentCount--;
+                countValue.textContent = currentCount;
+            }
+        });
+
+        btnNext.addEventListener('click', () => {
+            const jumlah = currentCount;
+            const varian = document.querySelector('input[name="varian"]:checked').value;
+            const pesanOpsional = document.getElementById('notes-pesan').value.trim() || "-";
+
+            localStorage.setItem('order_jumlah', jumlah);
+            localStorage.setItem('order_varian', varian);
+            localStorage.setItem('order_pesan', pesanOpsional);
+
+            window.location.href = "address.html";
+        });
+    </script>
+</body>
+
+</html>
